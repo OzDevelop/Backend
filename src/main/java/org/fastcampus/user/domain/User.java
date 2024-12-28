@@ -8,11 +8,43 @@ public class User {
     // 오버라이딩하지 않으면 메모리 주소값을 이용해 객체를 동일시 하기 때문.
     private final Long id;
     private final UserInfo info;
+    private final UserRelationCounter followingCount;
+    private final UserRelationCounter followerCount;
 
     public User (Long id, UserInfo userInfo) {
         this.id = id;
         this.info = userInfo;
+        this.followingCount = new UserRelationCounter();
+        this.followerCount = new UserRelationCounter();
     }
+
+    public void follow(User targetUser) {
+        if (targetUser.equals(this)) {
+            throw new IllegalArgumentException();
+        }
+
+        followingCount.increase();
+        targetUser.increaseFollowerCount();
+    }
+
+    public void unfollow(User targetUser) {
+        if (this.equals(targetUser)) {
+            throw new IllegalArgumentException();
+        }
+
+        followingCount.decrease();
+        targetUser.decreaseFollowerCount();
+    }
+
+    
+    private void increaseFollowerCount() {
+        followerCount.increase();
+    }
+
+    private void decreaseFollowerCount() {
+        followerCount.decrease();
+    }
+
 
     // control + Enter 단축키를 이용해 생성
     @Override
