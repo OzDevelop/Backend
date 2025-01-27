@@ -1,4 +1,10 @@
+** 🦖 User 생성 **
+1. 유저의 정보를 입력 받음 // Controller
+2. 유저의 유효성 정보를 확인(이름 빈 값인지) -> 비즈니스로직
+3. 유저 정보 저장 // Repository
 
+
+** 🦖 Follow 가능 **
 1. 팔로우 유저, 팔로우 당하는 유저 입력을 받고 불러오기 // Controller, Service
 2. 팔로우 여부 확인하기 // Repository
     - 팔로우 상태라면, 에러를 반환하기 // Service

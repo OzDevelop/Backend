@@ -36,7 +36,7 @@ public class User {
         targetUser.decreaseFollowerCount();
     }
 
-    
+// 디미터의 법칙을 지키기 위해 분리(쉽게 말하면 .(점) 으로 두번 이상 연달아 호출하지 말자)
     private void increaseFollowerCount() {
         followerCount.increase();
     }
