@@ -1,6 +1,7 @@
 package org.fastcampus.user.domain;
 
 import java.util.Objects;
+import org.fastcampus.common.domain.PositiveIntegerCounter;
 
 public class User {
 
@@ -8,14 +9,14 @@ public class User {
     // 오버라이딩하지 않으면 메모리 주소값을 이용해 객체를 동일시 하기 때문.
     private final Long id;
     private final UserInfo info;
-    private final UserRelationCounter followingCount;
-    private final UserRelationCounter followerCount;
+    private final PositiveIntegerCounter followingCount;
+    private final PositiveIntegerCounter followerCount;
 
     public User (Long id, UserInfo userInfo) {
         this.id = id;
         this.info = userInfo;
-        this.followingCount = new UserRelationCounter();
-        this.followerCount = new UserRelationCounter();
+        this.followingCount = new PositiveIntegerCounter();
+        this.followerCount = new PositiveIntegerCounter();
     }
 
     public void follow(User targetUser) {
@@ -45,6 +46,9 @@ public class User {
         followerCount.decrease();
     }
 
+    public Long getId() {
+        return id;
+    }
 
     // control + Enter 단축키를 이용해 생성
     @Override
