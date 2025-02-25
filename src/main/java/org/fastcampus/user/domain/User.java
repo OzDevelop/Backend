@@ -80,4 +80,7 @@ public class User {
         return followingCount.getCount();
     }
 
+    public UserInfo getInfo() {
+        return info;
+    }
 }
