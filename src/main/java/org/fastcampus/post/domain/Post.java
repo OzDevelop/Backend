@@ -1,6 +1,7 @@
 package org.fastcampus.post.domain;
 
 import org.fastcampus.common.domain.PositiveIntegerCounter;
+import org.fastcampus.post.domain.content.Content;
 import org.fastcampus.post.domain.content.PostContent;
 import org.fastcampus.post.domain.content.PostPublicationState;
 import org.fastcampus.user.domain.User;
@@ -24,7 +25,7 @@ public class Post {
 
     private final Long id; // Postid
     private final User author; // Post 작성자
-    private final PostContent content;
+    private final Content content;
     private final PositiveIntegerCounter likeCount;
     private PostPublicationState state;
 
@@ -32,7 +33,31 @@ public class Post {
         return likeCount.getCount();
     }
 
-    public Post(Long id, User author, PostContent content) {
+
+    /* 🦊 public static createPost 의 형태로 정적 생성자를 만드는 방법. 🦊
+    생성하게 된 이유. PostPublicationState를 원래 생성자 값으로 받지 않았는데 수정이 필요해 대책으로 사용.
+    PostPublicationState이 포함된 일반 생성자를 만들어도 되지만 왜 정적 생성자로 만들까? (역할은 일반 생성자와 같음, 위 2개, 아래 2개 생성자끼리)
+
+    🦖 정적 생성자를 사용할 때 장점
+    메소드를 통해서 어떤 생성자를 사용하는지 한번 더 메소드명으로 알려주기 때문에 유지보수 차원에서 유리함.(이름으로 명확한 구분이 가능)
+    일반 생성자를 사용할 경우 파라미터만 다르기 때문에 어떤 생성자를 사용하는지 식별에 불편함이 있음.
+
+    근데 메모리나 생성 위치 측면에서 장단점은 어떻게 될까??
+     */
+    public static Post createPost(Long id, User author, String content, PostPublicationState state) {
+        return new Post(id, author, new PostContent(content), state);
+    }
+
+    public static Post createDefaultPost(Long id, User author, String content) {
+        return new Post(id, author, new PostContent(content), PostPublicationState.PUBLIC);
+    }
+
+
+    public Post(Long id, User author, Content content) {
+        this(id, author, content, PostPublicationState.PUBLIC);
+    }
+
+    public Post(Long id, User author, Content content, PostPublicationState state) {
         if (author == null) {
             throw  new IllegalArgumentException();
         }
@@ -41,7 +66,7 @@ public class Post {
         this.author = author;
         this.content = content;
         this.likeCount = new PositiveIntegerCounter();
-        this.state = PostPublicationState.PUBLIC;
+        this.state = state;
     }
 
     public void like(User user) {
