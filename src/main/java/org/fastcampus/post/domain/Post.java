@@ -28,6 +28,10 @@ public class Post {
     private final PositiveIntegerCounter likeCount;
     private PostPublicationState state;
 
+    public int getLikeCount() {
+        return likeCount.getCount();
+    }
+
     public Post(Long id, User author, PostContent content) {
         if (author == null) {
             throw  new IllegalArgumentException();
@@ -47,7 +51,7 @@ public class Post {
         likeCount.increase();
     }
 
-    public void unlike(User user) {
+    public void unlike() {
         likeCount.decrease();
     }
 
@@ -57,5 +61,9 @@ public class Post {
         }
         this.state = state;
         this.content.updateContent(updateContent);
+    }
+
+    public String getContent() {
+        return content.getContentText();
     }
 }

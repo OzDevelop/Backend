@@ -10,11 +10,9 @@ import org.fastcampus.post.domain.common.DatetimeInfo;
     🐯 SOLID 원칙 중 SRP, OCP원칙이 잘 지켜진 코드 완
  */
 
-
-
 public abstract class Content {
-    String contentText;
-    final DatetimeInfo dateTimeInfo; // 🐶 컴포지션으로 관리
+    protected String contentText;
+    protected final DatetimeInfo dateTimeInfo; // 🐶 컴포지션으로 관리
 
     // 여기서 접근제어자 public 안쓰는 이유
     protected Content(String contentText) {
