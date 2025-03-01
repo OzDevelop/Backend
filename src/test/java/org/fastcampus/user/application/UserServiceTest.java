@@ -10,6 +10,7 @@ package org.fastcampus.user.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.fastcampus.Fake.FakeObjectFactory;
 import org.fastcampus.user.application.dto.CreateUserRequestDto;
 import org.fastcampus.user.application.interfaces.UserRepository;
 import org.fastcampus.user.domain.User;
@@ -18,8 +19,11 @@ import org.fastcampus.user.repository.FakeUserRepository;
 import org.junit.jupiter.api.Test;
 
 class UserServiceTest {
-    private final UserRepository userRepository = new FakeUserRepository();
-    private final UserService userService = new UserService(userRepository);
+
+    // 🐥 UserRelationServiceTest와 마찬가지로 FakeUserRepository를 사용하는 방법으로 리팩토링 🐥
+//    private final UserRepository userRepository = new FakeUserRepository();
+//    private final UserService userService = new UserService(userRepository);
+    private final UserService userService = FakeObjectFactory.getUserService();
 
     //저장한 유저가 정상적으로 반환이 되는지 테스트
     @Test
@@ -37,5 +41,4 @@ class UserServiceTest {
         assertEquals(foundUser.getId(), savedUser.getId());
         assertEquals("test", userInfo.getName());
     }
-
 }

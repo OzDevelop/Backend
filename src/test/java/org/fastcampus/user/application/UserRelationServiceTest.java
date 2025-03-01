@@ -3,6 +3,7 @@ package org.fastcampus.user.application;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.fastcampus.Fake.FakeObjectFactory;
 import org.fastcampus.user.application.dto.CreateUserRequestDto;
 import org.fastcampus.user.application.dto.FollowUserRequestDto;
 import org.fastcampus.user.application.interfaces.UserRelationRepository;
@@ -15,14 +16,19 @@ import org.junit.jupiter.api.Test;
 
 class UserRelationServiceTest {
 
-    private final UserRepository userRepository = new FakeUserRepository();
-    private final UserService userService = new UserService(userRepository);
-    // 한 쌍의 유저의 유효성을 확인하고 넣어야 함.
-    // 두 유저의 타겟이 다르기 때문.
-    // 테스트 내부에서 사용할 레코드를 넣어 fake 객체 생성
-    private final UserRelationRepository userRelationRepository = new FakeUserRelationRepository();
-    private final UserRelationService userRelationService = new UserRelationService(userService,
-            userRelationRepository);
+    // 🐥 기존 방법, FakeObjectFactory를 사용하지 않고 직접 생성 🐥
+//    private final UserRepository userRepository = new FakeUserRepository();
+//    private final UserService userService = new UserService(userRepository);
+//    // 한 쌍의 유저의 유효성을 확인하고 넣어야 함.
+//    // 두 유저의 타겟이 다르기 때문.
+//    // 테스트 내부에서 사용할 레코드를 넣어 fake 객체 생성
+//    private final UserRelationRepository userRelationRepository = new FakeUserRelationRepository();
+//    private final UserRelationService userRelationService = new UserRelationService(userService,
+//            userRelationRepository);
+
+    // 🐥 FakeObjectFactory를 사용하여 생성 🐥
+    private final UserService userService = FakeObjectFactory.getUserService();
+    private final UserRelationService userRelationService = FakeObjectFactory.getUserRelationService();
 
     private User user1;
     private User user2;

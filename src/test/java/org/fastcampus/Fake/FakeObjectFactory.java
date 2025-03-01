@@ -37,4 +37,25 @@ public class FakeObjectFactory {
 
     // 싱글톤으로 사용할꺼라 외부에서 FakeObjectFactory를 생성하지 못하게 private 생성자로 막음.
     private FakeObjectFactory() {}
+
+    public static UserService getUserService() {
+        return userService;
+    }
+
+    public static UserRelationService getUserRelationService() {
+        return userRelationRepository;
+    }
+
+    public static PostService getPostService() {
+        return postService;
+    }
+
+    public static CommentService getCommentService() {
+        return commentService;
+    }
+
+
+
+
+
 }
