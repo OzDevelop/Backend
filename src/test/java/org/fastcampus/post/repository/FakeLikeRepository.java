@@ -1,6 +1,7 @@
 package org.fastcampus.post.repository;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import org.fastcampus.post.application.interfaces.LikeRepository;
@@ -26,10 +27,9 @@ public class FakeLikeRepository implements LikeRepository {
     public void like(Post post, User user) {
         Set<User> users = postLikes.get(post);
         if (users == null) {
-            users = Set.of(user);
-        } else {
-            users.add(user);
+            users = new HashSet<>();
         }
+        users.add(user);
         postLikes.put(post, users);
 
     }
@@ -57,10 +57,9 @@ public class FakeLikeRepository implements LikeRepository {
     public void like(Comment comment, User user) {
         Set<User> users = commentLikes.get(comment);
         if (users == null) {
-            users = Set.of(user);
-        } else {
-            users.add(user);
+            users = new HashSet<>();
         }
+        users.add(user);
         commentLikes.put(comment, users);
 
     }

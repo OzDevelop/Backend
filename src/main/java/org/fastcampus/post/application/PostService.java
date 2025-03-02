@@ -46,8 +46,8 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public Post updatePost(Long id, UpdatePostRequestDto dto) {
-        Post post = getPost(id);
+    public Post updatePost(UpdatePostRequestDto dto) {
+        Post post = getPost(dto.postId());
         User user = userService.getUser(dto.userId());
 
         post.updatePost(user, dto.content(), dto.state());
@@ -74,8 +74,7 @@ public class PostService {
         if(likeRepository.checkLike(post, user)) {
             post.unlike();
             likeRepository.unlike(post, user);
-        }
-    }
+        }    }
 
 }
 

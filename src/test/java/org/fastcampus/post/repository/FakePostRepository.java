@@ -13,11 +13,12 @@ public class FakePostRepository implements PostRepository {
     public Post save(Post pos) {
         if(pos.getId() != null) {
             store.put(pos.getId(), pos);
+            return pos;
         }
         long id = store.size() + 1;
         Post newPost = new Post(id, pos.getAuthor(), pos.getContentObject());
         store.put(id, newPost);
-        return null;
+        return newPost;
     }
 
     @Override

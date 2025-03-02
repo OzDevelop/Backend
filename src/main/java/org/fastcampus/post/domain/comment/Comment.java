@@ -14,8 +14,8 @@ public class Comment {
     private final Content content;
     private final PositiveIntegerCounter likeCount;
 
-    public Comment(long id, User author, Content contentObject) {
-    }
+//    public Comment(long id, User author, Content contentObject) {
+//    }
 
     // 정적 생성자 사용 (CommentService에서 사용함)
     public static Comment createComment(Post post, User author, String content) {
@@ -55,7 +55,7 @@ public class Comment {
     }
 
     public void updateComment(User user, String updatedContent) {
-        if (!this.author.equals(user)) {
+        if (!author.equals(user)) {
             throw new IllegalArgumentException();
         }
         this.content.updateContent(updatedContent);
