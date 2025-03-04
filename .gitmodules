@@ -1,0 +1,3 @@
+[submodule "community_feed-submodule"]
+	path = community_feed-submodule
+	url = https://github.com/OzDevelop/community_feed-submodule.git
