@@ -6,11 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.fastcampus.Fake.FakeObjectFactory;
 import org.fastcampus.user.application.dto.CreateUserRequestDto;
 import org.fastcampus.user.application.dto.FollowUserRequestDto;
-import org.fastcampus.user.application.interfaces.UserRelationRepository;
-import org.fastcampus.user.application.interfaces.UserRepository;
 import org.fastcampus.user.domain.User;
-import org.fastcampus.user.repository.FakeUserRelationRepository;
-import org.fastcampus.user.repository.FakeUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

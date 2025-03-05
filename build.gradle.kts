@@ -27,16 +27,15 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
 
     // lombok
-    implementation("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
+    implementation ("org.projectlombok:lombok")
+    annotationProcessor ("org.projectlombok:lombok")
 
     // test
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-
 }
 
 tasks.test {
     useJUnitPlatform()
 }
+
