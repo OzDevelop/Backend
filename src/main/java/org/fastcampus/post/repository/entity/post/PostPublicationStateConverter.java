@@ -1,4 +1,4 @@
-package org.fastcampus.post.repository.entity;
+package org.fastcampus.post.repository.entity.post;
 
 import jakarta.persistence.AttributeConverter;
 import org.fastcampus.post.domain.content.PostPublicationState;

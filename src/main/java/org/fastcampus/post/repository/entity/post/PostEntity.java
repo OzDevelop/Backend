@@ -1,4 +1,4 @@
-package org.fastcampus.post.repository.entity;
+package org.fastcampus.post.repository.entity.post;
 
 
 import jakarta.persistence.ConstraintMode;
@@ -19,7 +19,6 @@ import org.fastcampus.common.repository.entity.TimeBaseEntity;
 import org.fastcampus.post.domain.Post;
 import org.fastcampus.post.domain.content.PostContent;
 import org.fastcampus.post.domain.content.PostPublicationState;
-import org.fastcampus.user.domain.User;
 import org.fastcampus.user.repository.entity.UserEntity;
 
 

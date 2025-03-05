@@ -4,15 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.fastcampus.common.domain.PositiveIntegerCounter;
 import org.fastcampus.common.repository.entity.TimeBaseEntity;
-import org.fastcampus.post.repository.entity.PostEntity;
 import org.fastcampus.user.domain.User;
 import org.fastcampus.user.domain.UserInfo;
 
