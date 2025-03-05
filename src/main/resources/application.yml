@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/community_feed
+    username: root
+    password: 
+
+  jpa:
+    show-sql: true      # DB로 전송되는 SQL문을 콘솔에 출력
+    hibernate:
+      ddl-auto: update  # 엔티티에 맞춰 스프링이 동작할 때 JPA가 MySQL에 맞게 테이블을 자동 생성, 수정해줌.(현업에선 안씀, 실습 연습에서만 사용)
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false  # DB Connection Pool과 관련.
+
