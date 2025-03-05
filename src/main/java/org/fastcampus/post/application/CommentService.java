@@ -32,7 +32,7 @@ public class CommentService {
         Post post = postService.getPost(dto.postId());
         User user = userService.getUser(dto.userId());
 
-        Comment comment = Comment.createComment(post, user, dto.content());
+        Comment comment = new Comment(null, post, user, dto.content());
         return commentRepository.save(comment);
     }
 

@@ -15,7 +15,7 @@ class CommentTest {
 
     private final PostContent postContent = new PostContent("Content");
     private final Post post = new Post(1L, user,postContent);
-    private final Comment comment = new Comment(1L, post, user, postContent);
+    private final Comment comment = new Comment(1L, post, user, "comment content");
 
     @Test
     void givenCommentCreate_whenLike_thenLikeCountShouldBe1() {
