@@ -24,7 +24,7 @@ dependencies {
 
     // mysql
     // mysql 연동을 위한 connector 라이브러리
-    runtimeOnly("com.mysql:mysql-connector-java")
+    runtimeOnly("com.mysql:mysql-connector-j")
 
     // lombok
     implementation("org.projectlombok:lombok")
