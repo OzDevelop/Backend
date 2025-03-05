@@ -6,10 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.fastcampus.common.domain.PositiveIntegerCounter;
+import org.fastcampus.common.repository.entity.TimeBaseEntity;
 import org.fastcampus.user.domain.User;
 import org.fastcampus.user.domain.UserInfo;
 
@@ -18,7 +18,8 @@ import org.fastcampus.user.domain.UserInfo;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class UserEntity {
+// TimeBaseEntity 상속을 이용해 legDt, updDto를 컬럼으로 추가
+public class UserEntity extends TimeBaseEntity {
     /*
   🐥 @Id 어노테이션.
   Entity들이 영속 상태가 되기 위해서는 반드리 id값이 필요함.

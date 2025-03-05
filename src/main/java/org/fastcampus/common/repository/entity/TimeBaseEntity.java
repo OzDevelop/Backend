@@ -14,7 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 public class TimeBaseEntity {
     @CreatedDate
-    @Column(updatable = false)
+    @Column(updatable = false) 
     private LocalDateTime regDt;
 
     @LastModifiedDate
