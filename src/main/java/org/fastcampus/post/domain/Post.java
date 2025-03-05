@@ -1,5 +1,8 @@
 package org.fastcampus.post.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import org.fastcampus.common.domain.PositiveIntegerCounter;
 import org.fastcampus.post.domain.content.Content;
 import org.fastcampus.post.domain.content.PostContent;
@@ -20,7 +23,9 @@ import org.fastcampus.user.domain.User;
         - 행동 기반의 책임을 생각해보았을때, 객체지향에 가까운 방법은 아님.
  */
 
-
+@Getter
+@Builder
+@AllArgsConstructor
 public class Post {
 
     private final Long id; // Postid
@@ -91,14 +96,7 @@ public class Post {
     public String getContent() {
         return content.getContentText();
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
+    
 
     public Content getContentObject() {
         return content;

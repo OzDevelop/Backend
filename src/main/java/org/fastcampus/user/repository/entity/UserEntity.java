@@ -4,12 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.fastcampus.common.domain.PositiveIntegerCounter;
 import org.fastcampus.common.repository.entity.TimeBaseEntity;
+import org.fastcampus.post.repository.entity.PostEntity;
 import org.fastcampus.user.domain.User;
 import org.fastcampus.user.domain.UserInfo;
 
@@ -34,6 +37,14 @@ public class UserEntity extends TimeBaseEntity {
     private String profileImage;
     private Integer followerCount;
     private Integer followingCount;
+
+    //🦊 Post와 1:다 관계를 나타내기 위함
+    // @OneToMany는 LazyLoading이 default임.
+    // 🦊 근데 이거 보다는 Repository를 통해 데이터를 불러오는 방법을 더 많이 사용함.(단방향 매핑) 🦊
+        // 만약 fetch를 default(Lazy)가 아닌 EAGER 등으로 설정한다면 포스트에서도 유저 조회가 가능한 양방향 조회가 가능해짐.
+        // 이러면 자바 앱 내부적으로 메모리 부족의 문제가 발생할 수 있음.
+    // @OneToMany
+//    private List<PostEntity> posts;
 
     public UserEntity(User user) {
         this.id = user.getId();
