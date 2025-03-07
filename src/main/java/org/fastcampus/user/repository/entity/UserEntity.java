@@ -12,11 +12,13 @@ import org.fastcampus.common.domain.PositiveIntegerCounter;
 import org.fastcampus.common.repository.entity.TimeBaseEntity;
 import org.fastcampus.user.domain.User;
 import org.fastcampus.user.domain.UserInfo;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Table(name = "community_user")
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicUpdate // 팔로잉, 팔로워 변경시 전체 업데이트 말고 변경값만 업데이트하기 위해 추가
 @Getter
 // TimeBaseEntity 상속을 이용해 legDt, updDto를 컬럼으로 추가
 public class UserEntity extends TimeBaseEntity {

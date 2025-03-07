@@ -5,6 +5,7 @@ package org.fastcampus.user.application;
 
 import java.util.IllformedLocaleException;
 import org.fastcampus.user.application.dto.CreateUserRequestDto;
+import org.fastcampus.user.application.dto.GetUserResponseDto;
 import org.fastcampus.user.application.interfaces.UserRepository;
 import org.fastcampus.user.domain.User;
 import org.fastcampus.user.domain.UserInfo;
@@ -31,5 +32,10 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public GetUserResponseDto getUserProfile(Long id) {
+        User user = getUser(id);
+
+        return new GetUserResponseDto(user);
+    }
 
 }
