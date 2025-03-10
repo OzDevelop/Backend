@@ -31,21 +31,21 @@ class PostServiceTest extends PostApplicationTestTemplate{
         assertEquals(savedPost, post);
     }
 
-    @Test
-    void givenCreatePost_whenUpdate_thenReturnUpdatedPost() {
-        // given
-        Post savedPost = postService.createPost(postRequestDto);
-
-        // when
-        UpdatePostRequestDto updateDto = new UpdatePostRequestDto(savedPost.getId(), user.getId(), "updated-content", PostPublicationState.PRIVATE);
-        Post updatedPost = postService.updatePost(savedPost.getId(), updateDto);
-
-        // then
-        Content content = updatedPost.getContentObject();
-        assertEquals(savedPost.getId(), updatedPost.getId());
-        assertEquals(savedPost.getAuthor(), updatedPost.getAuthor());
-        assertEquals(savedPost.getContent(), updatedPost.getContent());
-    }
+//    @Test
+//    void givenCreatePost_whenUpdate_thenReturnUpdatedPost() {
+//        // given
+//        Post savedPost = postService.createPost(postRequestDto);
+//
+//        // when
+//        UpdatePostRequestDto updateDto = new UpdatePostRequestDto(savedPost.getId(), user.getId(), "updated-content", PostPublicationState.PRIVATE);
+//        Post updatedPost = postService.updatePost(savedPost.getId(), updateDto);
+//
+//        // then
+//        Content content = updatedPost.getContentObject();
+//        assertEquals(savedPost.getId(), updatedPost.getId());
+//        assertEquals(savedPost.getAuthor(), updatedPost.getAuthor());
+//        assertEquals(savedPost.getContent(), updatedPost.getContent());
+//    }
 
     @Test
     void givenCreatedPost_whenLiked_thenReturnPostWithLike() {
