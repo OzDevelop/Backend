@@ -9,7 +9,9 @@ import org.fastcampus.post.domain.Post;
 import org.fastcampus.post.domain.comment.Comment;
 import org.fastcampus.user.application.UserService;
 import org.fastcampus.user.domain.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommentService {
     private final UserService userService;
     private final PostService postService;
@@ -30,14 +32,14 @@ public class CommentService {
 
     public Comment createComment(CreateCommentRequestDto dto) {
         Post post = postService.getPost(dto.postId());
-        User user = userService.getUser(dto.userId());
+        User author = userService.getUser(dto.authorId());
 
-        Comment comment = new Comment(null, post, user, dto.content());
+        Comment comment = new Comment(null, post, author, dto.content());
         return commentRepository.save(comment);
     }
 
-    public Comment updateComment(UpdateCommentRequestDto dto) {
-        Comment comment = getComment(dto.commentId());
+    public Comment updateComment(Long commentId, UpdateCommentRequestDto dto) {
+        Comment comment = getComment(commentId);
         User user = userService.getUser(dto.userId());
 
         comment.updateComment(user, dto.content());
@@ -58,12 +60,12 @@ public class CommentService {
     }
 
     public void unlikeComment(LikeRequestDto dto) {
-        Comment coment = getComment(dto.targetId());
-        User user = userService.getUser(dto.userId());
+        Comment comment = getComment(dto.userId());
+        User user = userService.getUser(dto.targetId());
 
-        if(likeRepository.checkLike(coment, user)) {
-            coment.unlike();
-            likeRepository.unlike(coment, user);
+        if(likeRepository.checkLike(comment, user)) {
+            comment.unlike();
+            likeRepository.unlike(comment, user);
         }
     }
 }

@@ -25,6 +25,10 @@ public class Comment {
 //        return new Comment(null, post, author, new CommentContent(content));
 //    }
 
+    public Comment(Long id, Post post, User author, Content content) {
+        this(id, post, author, content, new PositiveIntegerCounter());
+    }
+
     public Comment(Long id, Post post, User author, String content) {
         this(id, post, author, new CommentContent(content), new PositiveIntegerCounter());
     }
