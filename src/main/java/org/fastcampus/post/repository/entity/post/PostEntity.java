@@ -20,6 +20,7 @@ import org.fastcampus.post.domain.Post;
 import org.fastcampus.post.domain.content.PostContent;
 import org.fastcampus.post.domain.content.PostPublicationState;
 import org.fastcampus.user.repository.entity.UserEntity;
+import org.hibernate.annotations.ColumnDefault;
 
 
 @Entity
@@ -51,9 +52,10 @@ public class PostEntity extends TimeBaseEntity {
     */
     @Convert(converter = PostPublicationStateConverter.class)
     private PostPublicationState state;
-
-
     private Integer likeCount;
+
+    @ColumnDefault("0")
+    private int commentCount;
 
 
     // PostEntity는 Post를 기반으로 생성되어야 하기 때문에 생성자와 빌더를 추가.
@@ -63,6 +65,7 @@ public class PostEntity extends TimeBaseEntity {
         this.content = post.getContent();
         this.state = post.getState();
         this.likeCount = post.getLikeCount();
+
     }
 
     public Post toPost() {

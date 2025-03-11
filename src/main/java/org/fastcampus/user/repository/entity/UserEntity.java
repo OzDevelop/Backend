@@ -56,7 +56,7 @@ public class UserEntity extends TimeBaseEntity {
     public User toUser() {
         return User.builder()
                 .id(id)
-                .info(new UserInfo(name, profileImage))
+                .userInfo(new UserInfo(name, profileImage))
                 .followerCount(new PositiveIntegerCounter(followerCount))
                 .followingCount(new PositiveIntegerCounter(followingCount))
                 .build();

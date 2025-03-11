@@ -12,24 +12,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RequiredArgsConstructor
 public class PostRepositoryImpl implements PostRepository {
-    private final JpaPostRepository postRepository;
     private final JpaPostRepository jpaPostRepository;
 
     @Override
     @Transactional
     public Post save(Post post) {
         PostEntity postEntity = new PostEntity(post);
-        if (postEntity.getId() == null) {
+        if (postEntity.getId() != null) {
             jpaPostRepository.updatePostEntity(postEntity);
             return postEntity.toPost();
         }
-        postEntity = postRepository.save(postEntity);
+        postEntity = jpaPostRepository.save(postEntity);
         return postEntity.toPost();
     }
 
     @Override
     public Post findById(Long id) {
-        PostEntity postEntity = postRepository.findById(id).orElseThrow();
+        PostEntity postEntity = jpaPostRepository.findById(id).orElseThrow();
         return postEntity.toPost();
     }
 }

@@ -86,11 +86,16 @@ public class Post {
     }
 
     public void updatePost(User user, String updateContent, PostPublicationState state) {
-        if (!this.author.equals(user)) {
-            throw new IllegalArgumentException();
+        if (!author.equals(user)) {
+            throw new IllegalArgumentException("only author can update content");
         }
-        this.state = state;
+        if (state == null) {
+            state = PostPublicationState.PUBLIC;
+        }
+
+
         this.content.updateContent(updateContent);
+        this.state = state;
     }
 
     public String getContent() {

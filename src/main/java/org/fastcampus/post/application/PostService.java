@@ -50,10 +50,10 @@ public class PostService {
 
     public Post updatePost(Long postId, UpdatePostRequestDto dto) {
         Post post = getPost(postId);
+        System.out.println("userId: {}"+ " " + dto.userId() + "111111111111");
         User user = userService.getUser(dto.userId());
 
         post.updatePost(user, dto.content(), dto.state());
-
         return postRepository.save(post);
     }
 
