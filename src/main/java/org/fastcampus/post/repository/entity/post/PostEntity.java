@@ -45,7 +45,6 @@ public class PostEntity extends TimeBaseEntity {
     private UserEntity author;
 
     private String content;
-
     /* Post Domain에 상태값에 대한 state enum 값이 있음.
     enum String 값과 객체로 변경을 쉽게 해주는 컨버터 어노테이션을 추가해주고, 변환해주는 컨버터 클래스를 추가.
     이럼 이제 데이터가 저장될 때 컨버터를 통해서 데이터를 변환하고, 불러올 땐 state를 반환하는 식으로 구현
@@ -54,6 +53,9 @@ public class PostEntity extends TimeBaseEntity {
     private PostPublicationState state;
     private Integer likeCount;
 
+
+    //db에서 관리되는 값이므로 wrapper type이 아닌 primitive 타입으로 선언
+    // @ColumnDefault("0") 을 통해 db에서 자동으로 data row 생성 시 값을 0으로 초기화
     @ColumnDefault("0")
     private int commentCount;
 
