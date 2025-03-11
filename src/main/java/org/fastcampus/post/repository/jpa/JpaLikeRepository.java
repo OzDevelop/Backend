@@ -1,4 +1,4 @@
-package org.fastcampus.post.repository.entity.post;
+package org.fastcampus.post.repository.jpa;
 
 import org.fastcampus.post.repository.entity.like.LikeEntity;
 import org.fastcampus.post.repository.entity.like.LikeIdEntity;

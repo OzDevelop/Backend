@@ -6,7 +6,7 @@ import org.fastcampus.post.application.interfaces.CommentRepository;
 import org.fastcampus.post.domain.Post;
 import org.fastcampus.post.domain.comment.Comment;
 import org.fastcampus.post.repository.entity.comment.CommentEntity;
-import org.fastcampus.post.repository.entity.post.JpaCommentRepository;
+import org.fastcampus.post.repository.jpa.JpaCommentRepository;
 import org.fastcampus.post.repository.jpa.JpaPostRepository;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +34,7 @@ public class CommentRepositoryImpl implements CommentRepository {
         이 두 방식의 장단점은 뭘까?
         1 은 역할을 객체에 위임하고, 유연하게 사용할 수 있다는 장점이 있음.
         2 는 repository 기능만으로 따로 만들지 않고 기능 구현이 가능했음.
-        
+
          */
 
         CommentEntity commentEntity = new CommentEntity(comment);

@@ -54,3 +54,9 @@ USER ID / POST ID / AUTHOR_ID
 
 포스트, 유저별로 앞의 유저의 큐 형식으로 프스트가 쌓이는 형식으로 db 테이블을 만들 예정.
 
+UserPostQueueEntity
+JpaUserPostQueueRepository
+
+CommandRepository - UserPostQueue에 데이터를 넣어주는 역할.
+QueryRepository - UserPostQueue의 데이터를 조회하는 역할.
+

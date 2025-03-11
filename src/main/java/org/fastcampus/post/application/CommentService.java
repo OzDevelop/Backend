@@ -48,15 +48,15 @@ public class CommentService {
     }
 
     public void likeComment(LikeRequestDto dto) {
-        Comment coment = getComment(dto.targetId());
+        Comment comment = getComment(dto.targetId());
         User user = userService.getUser(dto.userId());
 
-        if(likeRepository.checkLike(coment, user)) {
+        if(likeRepository.checkLike(comment, user)) {
             return;
         }
 
-        coment.like(user);
-        likeRepository.like(coment, user);
+        comment.like(user);
+        likeRepository.like(comment, user);
     }
 
     public void unlikeComment(LikeRequestDto dto) {

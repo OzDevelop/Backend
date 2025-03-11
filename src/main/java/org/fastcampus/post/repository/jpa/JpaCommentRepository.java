@@ -1,6 +1,5 @@
-package org.fastcampus.post.repository.entity.post;
+package org.fastcampus.post.repository.jpa;
 
-import org.fastcampus.post.domain.comment.Comment;
 import org.fastcampus.post.repository.entity.comment.CommentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
