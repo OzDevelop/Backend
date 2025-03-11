@@ -43,6 +43,10 @@ like 엔티티는 생성, 삭제밖에 없음.
         -> Entity를 따로 분리하였기에 Service, Domain 단에서의 코드 수정이 없음.
     2. DB 로직이 수정되면, Service 레이어도 영향을 받는다는 문제!!!
 
+
+직접 쿼리를 작성할 때의 단점은 무엇일까?
+기존 객체로 만든 것보다 덜 유연하고, 테스트를 위해 외부 라이브리러를 사용해야 함.
+
  */
 
 @Repository
@@ -68,7 +72,7 @@ public class LikeRepositoryImpl implements LikeRepository {
         LikeEntity likeEntity = new LikeEntity(post, user);
         em.persist(likeEntity);
 //        jpaLikeRepository.save(likeEntity);
-        jpaPostRepository.updateLikeCount(new PostEntity(post));
+        jpaPostRepository.updateLikeCount(post.getId(), 1);
     }
 
     // deleteById 대신 delete를 사용하면 안되나?
@@ -76,7 +80,7 @@ public class LikeRepositoryImpl implements LikeRepository {
     public void unlike(Post post, User user) {
         LikeEntity likeEntity = new LikeEntity(post, user);
         jpaLikeRepository.deleteById(likeEntity.getId());
-        jpaPostRepository.updateLikeCount(new PostEntity(post));
+        jpaPostRepository.updateLikeCount(post.getId(), -1);
     }
 
     @Override
@@ -91,14 +95,14 @@ public class LikeRepositoryImpl implements LikeRepository {
     public void like(Comment comment, User user) {
         LikeEntity likeEntity = new LikeEntity(comment, user);
         em.persist(likeEntity);
-        jpaCommentRepository.updateLikeCount(new CommentEntity(comment));
+        jpaCommentRepository.updateLikeCount(comment.getId(), 1);
     }
 
     @Override
     public void unlike(Comment comment, User user) {
         LikeEntity likeEntity = new LikeEntity(comment, user);
         jpaLikeRepository.deleteById(likeEntity.getId());
-        jpaCommentRepository.updateLikeCount(new CommentEntity(comment));
+        jpaCommentRepository.updateLikeCount(comment.getId(), -1);
 
     }
 }
