@@ -1,4 +1,4 @@
-package org.fastcampus.acceptance;
+package org.fastcampus.acceptance.utils;
 
 
 import groovy.util.logging.Slf4j;
