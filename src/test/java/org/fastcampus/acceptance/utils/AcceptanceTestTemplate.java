@@ -16,8 +16,9 @@ public class AcceptanceTestTemplate {
     private DataLoader dataLoader;
 
     @BeforeEach
-    public void setUp() {
+    public void init() {
         databaseCleanup.execute();
         dataLoader.loadData();
     }
+
 }

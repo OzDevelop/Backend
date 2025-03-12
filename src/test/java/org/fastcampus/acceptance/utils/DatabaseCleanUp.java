@@ -34,7 +34,7 @@ public class DatabaseCleanUp implements InitializingBean {
                 .map(entity -> entity.getJavaType().getAnnotation(Table.class).name())
                 .toList();
 
-        notGeneratedIdTableNames = List.of("community_user_relation", "community_like")
+        notGeneratedIdTableNames = List.of("community_user_relation", "community_like");
     }
 
     //위 정보를 바탕으로 테이블 데이터를 지우는 메소드 구현
