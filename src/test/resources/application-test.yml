@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # update가 아닌, 매번 테스트가 실행될때마다 새로운 테이블을 만들기 위해 기존 테이블을 제거하고 생성해주는 옵션
+    open-in-view: false
