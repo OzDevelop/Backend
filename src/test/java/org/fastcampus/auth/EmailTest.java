@@ -24,7 +24,7 @@ class EmailTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"valid/@ab", "naver.com", "natty#@naver", "안녕하@세요.com"})
+    @ValueSource(strings = {"valid@ab", "a@naver.com", "natty@naver", "test@test.com"})
     void givenEmailValid_whenCreate_thenReturnEmail(String email) {
         // given
 
