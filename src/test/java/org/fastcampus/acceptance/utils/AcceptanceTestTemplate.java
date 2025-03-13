@@ -29,4 +29,10 @@ public class AcceptanceTestTemplate {
         return dataLoader.getEmailToken(email);
     }
 
+    protected boolean isEmailVerified(String email) {
+        return dataLoader.isEmailVerified(email);
+
+    }
+
+
 }
