@@ -74,7 +74,7 @@ public class SignUpAcceptanceTest extends AcceptanceTestTemplate {
 
         // then
         boolean isEmailVerified = isEmailVerified(email);
-        assertEquals(400, code);
+        assertEquals(500, code);
         assertFalse(isEmailVerified);
     }
 

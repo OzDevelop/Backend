@@ -35,7 +35,7 @@ public class SignUpController {
 
     @GetMapping("/verify-token")
     public Response<Void> verifyEmail(String email, String token) {
-
+        emailService.verifyEmail(email, token);
         return Response.ok(null);
     }
 
