@@ -47,8 +47,8 @@ public class DataLoader {
     }
 
     public Long getUserId(String email) {
-        return (Long) entityManager.createNativeQuery("SELECT userId FROM community_user_auth WHERE email = ?", String.class)
-                .setParameter(1, email)
+        return entityManager.createQuery("SELECT userId FROM UserAuthEntity WHERE email = :email", Long.class)
+                .setParameter("email", email)
                 .getSingleResult();
     }
 

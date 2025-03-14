@@ -1,6 +1,7 @@
 package org.fastcampus.auth.ui;
 
 import lombok.RequiredArgsConstructor;
+import org.fastcampus.auth.application.AuthService;
 import org.fastcampus.auth.application.EmailService;
 import org.fastcampus.auth.application.dto.CreateUserAuthRequestDto;
 import org.fastcampus.auth.application.dto.SendEmailRequestDto;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SignUpController {
 
     private final EmailService emailService;
+    private final AuthService authService;
 
     @PostMapping("/send-verification-email")
     public Response<Void> sendEmail(@RequestBody SendEmailRequestDto dto) {
@@ -42,7 +44,7 @@ public class SignUpController {
 
     @PostMapping("/resister")
     public Response<Long> register(@RequestBody CreateUserAuthRequestDto dto ) {
-        return Response.ok(1L);
+        return Response.ok(authService.registerUser(dto));
     }
 
 }

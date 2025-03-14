@@ -18,4 +18,8 @@ public class Password {
     public boolean matchPassword(String password) {
         return encryptedPassword.matches(SHA256.encrypt(password));
     }
+
+    public String getEncryptedPassword() {
+        return encryptedPassword;
+    }
 }
