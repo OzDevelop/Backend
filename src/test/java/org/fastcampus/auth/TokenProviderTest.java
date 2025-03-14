@@ -9,7 +9,9 @@ import org.junit.jupiter.api.Test;
 
 class TokenProviderTest {
 
-    private final TokenProvider tokenProvider = new TokenProvider();
+    // key는 256비트 이상이 되어야 하기 때문
+    private final String secretKey = "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest";
+    private final TokenProvider tokenProvider = new TokenProvider(secretKey);
 
     // 토큰 생성
     @Test
