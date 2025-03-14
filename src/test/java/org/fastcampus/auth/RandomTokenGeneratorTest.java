@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.fastcampus.auth.domain.RandomTokenGenerator;
 import org.junit.jupiter.api.Test;
 
-public class RandomTokenGeneratorTest {
+class RandomTokenGeneratorTest {
 
     @Test
     void whenGenerateToken_thenReturnTokenWithCorrectLength() {
