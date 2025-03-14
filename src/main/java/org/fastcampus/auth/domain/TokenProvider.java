@@ -5,7 +5,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.util.Date;
 import javax.crypto.SecretKey;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TokenProvider {
 
     /** JWT 기능을 구현하기 위해서는 Secret Key가 필요함.
@@ -15,7 +18,8 @@ public class TokenProvider {
     private final SecretKey key;
     private static final long TOKEN_VALID_TIME = 1000L * 60 * 60; // 1 hour
 
-    public TokenProvider(String secretKey) {
+    //Value 를 통해 application.yml 에 작성한 secret-key 값을 가져옴
+    public TokenProvider(@Value("${secret-key}") String secretKey) {
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes()); // secretkey 값은 256비트 이상이 들어가야 안전함. 그 이하로 들어갈경우 예외처리되어 에러 반환.
     }
 

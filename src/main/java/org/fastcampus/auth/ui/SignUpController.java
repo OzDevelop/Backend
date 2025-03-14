@@ -42,7 +42,7 @@ public class SignUpController {
         return Response.ok(null);
     }
 
-    @PostMapping("/resister")
+    @PostMapping("/register")
     public Response<Long> register(@RequestBody CreateUserAuthRequestDto dto ) {
         return Response.ok(authService.registerUser(dto));
     }

@@ -2,6 +2,7 @@ package org.fastcampus.auth.ui;
 
 
 import lombok.RequiredArgsConstructor;
+import org.fastcampus.auth.application.AuthService;
 import org.fastcampus.auth.application.dto.LoginRequestDto;
 import org.fastcampus.auth.application.dto.UserAccessTokenResponseDto;
 import org.fastcampus.common.ui.Response;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LoginController {
 
+    private final AuthService authService;
+
     @PostMapping
     public Response<UserAccessTokenResponseDto> login(@RequestBody LoginRequestDto dto) {
-        return null;
+        return Response.ok(authService.login(dto));
     }
 }
