@@ -23,17 +23,46 @@ public class FeedAcceptanceSteps {
     }
 
     // Feed의 정보를 가지고 오는 Step
-    public static List<GetPostContentResponseDto> requestFeed(Long userId) {
+//    public static List<GetPostContentResponseDto> requestFeed(Long userId) {
+//        return RestAssured
+//                .given().log().all()    // 주어진 결과에 대한 log 추가
+////                .body(dto) // get이기 때문에 body를 지움.
+////                .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                .accept(MediaType.APPLICATION_JSON_VALUE)
+//                .when()
+//                .get("/feed/{userId}", userId)
+//                .then().log().all()     // 가져온 결과에 대한 log 추가
+//                .extract()
+//                .jsonPath()
+//                .getList("value", GetPostContentResponseDto.class);
+//    }
+
+public static List<GetPostContentResponseDto> requestFeed(String token ) {
+    return RestAssured
+            .given().log().all()    // 주어진 결과에 대한 log 추가
+//                .body(dto) // get이기 때문에 body를 지움.
+//                .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .header("Authorization", "Bearer " + token)
+            .accept(MediaType.APPLICATION_JSON_VALUE)
+            .when()
+            .get("/feed")
+            .then().log().all()     // 가져온 결과에 대한 log 추가
+            .extract()
+            .jsonPath()
+            .getList("value", GetPostContentResponseDto.class);
+}
+    public static Integer requestFeedCode(String token ) {
         return RestAssured
                 .given().log().all()    // 주어진 결과에 대한 log 추가
 //                .body(dto) // get이기 때문에 body를 지움.
 //                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .header("Authorization", "Bearer " + token)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
                 .when()
-                .get("/feed/{userId}", userId)
+                .get("/feed")
                 .then().log().all()     // 가져온 결과에 대한 log 추가
                 .extract()
                 .jsonPath()
-                .getList("value", GetPostContentResponseDto.class);
+                .get( "code" );
     }
 }

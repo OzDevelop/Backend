@@ -33,8 +33,8 @@ public class DataLoader {
             createUser("user" + i + "@test.com");
         }
 
-        followUser(new FollowUserRequestDto(1L, 2L));
-        followUser(new FollowUserRequestDto(1L, 3L));
+//        followUser(new FollowUserRequestDto(1L, 2L));
+//        followUser(new FollowUserRequestDto(2L, 3L));
     }
 
     public String getEmailToken(String email) {

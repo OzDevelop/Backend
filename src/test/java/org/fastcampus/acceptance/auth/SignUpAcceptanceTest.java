@@ -133,7 +133,7 @@ public class SignUpAcceptanceTest extends AcceptanceTestTemplate {
         Integer code = registerUser(dto);
 
         // then
-        assertEquals(4 00, code);
+        assertEquals(400, code);
     }
 
 }
