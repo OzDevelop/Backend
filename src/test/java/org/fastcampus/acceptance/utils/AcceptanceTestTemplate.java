@@ -34,5 +34,9 @@ public class AcceptanceTestTemplate {
 
     }
 
+    protected Long getUserId(String email) {
+        return dataLoader.getUserId(email);
+    }
+
 
 }
