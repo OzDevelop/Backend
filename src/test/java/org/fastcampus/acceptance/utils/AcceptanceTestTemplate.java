@@ -38,5 +38,9 @@ public class AcceptanceTestTemplate {
         return dataLoader.getUserId(email);
     }
 
+    protected void createUser(String  email) {
+        dataLoader.createUser(email);
+    }
+
 
 }
