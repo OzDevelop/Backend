@@ -13,3 +13,4 @@ spring:
       hibernate:
         format_sql: true
     open-in-view: false  # DB Connection Pool과 관련.
+secret-key: testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest

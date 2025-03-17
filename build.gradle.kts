@@ -21,6 +21,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     // API 기능 구현 후 파라미터로 들어왔을 때 에러 처리
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    // thymeleaf 추가
+    // 스프링에서 받아온 데이터를 html 템플릿과 js에 편하게 데이터를 넣을 수 있게 도와주는 라이브러리.
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
     // mysql
