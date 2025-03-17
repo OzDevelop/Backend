@@ -1,4 +1,4 @@
-package org.fastcampus.common;
+package org.fastcampus.common.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

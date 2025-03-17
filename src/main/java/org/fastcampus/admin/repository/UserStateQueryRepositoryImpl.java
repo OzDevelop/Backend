@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.fastcampus.admin.ui.dto.users.GetDailyRegisterUserResponseDto;
 import org.fastcampus.admin.ui.query.UserStateQueryRepository;
-import org.fastcampus.common.TimeCalculator;
+import org.fastcampus.common.utils.TimeCalculator;
 import org.fastcampus.user.repository.entity.QUserEntity;
 import org.springframework.stereotype.Repository;
 

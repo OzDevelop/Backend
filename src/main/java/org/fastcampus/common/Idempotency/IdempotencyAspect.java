@@ -1,14 +1,15 @@
 package org.fastcampus.common.Idempotency;
 
-// 멱등성 객체를 확인하는 AOP 객체
-
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.fastcampus.common.Idempotency.Repository.entity.IdempotencyEntity;
+import org.fastcampus.common.ui.Response;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+
+// 멱등성 객체를 확인하는 AOP 객체
 
 @Aspect
 @Component
@@ -23,6 +24,8 @@ public class IdempotencyAspect {
      * AOP를 통해 메소드가 호출되기 전, 호출된 후 값들을 조정 및 반환될 수 있도록 수정할 예정
      * 멱등키가 이미 처리된 것이라면 반환하고, 아니라면 응답값을 저장하고, 추후에 같은 값이 왔을 때 반환하는 로직을 추가.
      *
+     *
+     * 좋아요의 경우 한번만 수행이 되면 되니까, PostController 좋아요 기능에서 멱등키 적용.
     */
     @Around("@annotation(Idempotent)")
     public Object checkIdempotency(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -31,7 +34,17 @@ public class IdempotencyAspect {
             return joinPoint.proceed();
         }
 
-        Object result = joinPoint.proceed();
+        Idempotency idempotency = idempotencyRepository.getByKey(idempotencyKey);
+
+        if (idempotency != null) {
+            return idempotency.getResponse(); // 멱등키가 이미 서버에 있으므로, 로직을 수행하지 않고 저장된 응답 값 반환
+        }
+
+        Object result = joinPoint.proceed();    // 로직을 수행함.
+
+        Idempotency newIdempotency = new Idempotency(idempotencyKey, (Response<?>) result);
+        idempotencyRepository.save(newIdempotency);
+
         return result;
 
     }
