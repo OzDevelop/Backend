@@ -6,10 +6,14 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.fastcampus.admin.ui.dto.GetTableListResponse;
+import org.fastcampus.admin.ui.dto.posts.GetPostTableRequestDto;
+import org.fastcampus.admin.ui.dto.posts.GetPostTableResponseDto;
 import org.fastcampus.admin.ui.dto.users.GetUserTableRequestDto;
 import org.fastcampus.admin.ui.dto.users.GetUserTableResponseDto;
 import org.fastcampus.admin.ui.query.AdminTableQueryRepository;
 import org.fastcampus.auth.repository.entity.QUserAuthEntity;
+import org.fastcampus.post.repository.entity.post.PostEntity;
+import org.fastcampus.post.repository.entity.post.QPostEntity;
 import org.fastcampus.user.repository.entity.QUserEntity;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +24,7 @@ public class AdminTableQueryRepositoryImpl implements AdminTableQueryRepository 
 
     private static final QUserAuthEntity userAuthEntity = QUserAuthEntity.userAuthEntity;
     private static final QUserEntity userEntity = QUserEntity.userEntity.userEntity;
+    private static final QPostEntity postEntity = QPostEntity.postEntity.postEntity;
 
     @Override
     public GetTableListResponse<GetUserTableResponseDto> getUserTableData(GetUserTableRequestDto dto) {
@@ -119,11 +124,66 @@ public class AdminTableQueryRepositoryImpl implements AdminTableQueryRepository 
 
     }
 
+    @Override
+    public GetTableListResponse<GetPostTableResponseDto> getPostTableData(GetPostTableRequestDto dto) {
+        int total = queryFactory.select(postEntity.id)
+                .from(postEntity)
+                .where(
+                        eqPistid(dto.getPostId())
+                )
+                .fetch()
+                .size();
+
+        List<Long> ids = queryFactory
+                .select(postEntity.id)
+                .from(postEntity)
+                .where(
+                        eqPistid(dto.getPostId())
+                )
+                .orderBy(postEntity.id.desc())
+                .offset(dto.getOffset())
+                .limit(dto.getLimit())
+                .fetch();
+
+        List<GetPostTableResponseDto> result = queryFactory
+                .select(
+                        Projections.fields(
+                                GetPostTableResponseDto.class,
+                                postEntity.id.as("postId"),
+                                userEntity.id.as("userId"),
+                                userEntity.name.as("userName"),
+                                postEntity.content.as("content"),
+                                postEntity.regDt.as("createdAt"),
+                                postEntity.updDt.as("updatedAt")
+                        )
+                )
+                .from(postEntity)
+                .join(userEntity).on(postEntity.author.id.eq(userEntity.id))
+                .where(
+                        postEntity.id.in(ids)
+                )
+                .orderBy(postEntity.id.desc())
+                .fetch();
+
+
+        return new GetTableListResponse<>(total, result);
+    }
+
+
+
+
     private BooleanExpression likeName(String name) {
         if (name == null || name.isEmpty()) {
             return null;
         }
         return userEntity.name.like(name + "%");
+    }
+
+    private BooleanExpression eqPistid(Long id) {
+        if (id == null) {
+            return null;
+        }
+        return postEntity.id.eq(id);
     }
 }
 

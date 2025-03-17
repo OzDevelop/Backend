@@ -3,6 +3,8 @@ package org.fastcampus.admin.ui;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.fastcampus.admin.ui.dto.GetTableListResponse;
+import org.fastcampus.admin.ui.dto.posts.GetPostTableRequestDto;
+import org.fastcampus.admin.ui.dto.posts.GetPostTableResponseDto;
 import org.fastcampus.admin.ui.dto.users.GetDailyRegisterUserResponseDto;
 import org.fastcampus.admin.ui.dto.users.GetUserTableRequestDto;
 import org.fastcampus.admin.ui.dto.users.GetUserTableResponseDto;
@@ -53,6 +55,19 @@ public class AdminController {
         return modelAndView;
     }
 
+    @GetMapping("/posts")
+    public ModelAndView posts(GetPostTableRequestDto dto) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("posts");
+
+        GetTableListResponse<GetPostTableResponseDto> result = adminTableQueryRepository.getPostTableData(dto);
+        modelAndView.addObject("requestDto", dto);
+        modelAndView.addObject("postList", result.getTableData());
+        modelAndView.addObject("totalCount", result.getTotalCount());
+
+        return modelAndView;
+    }
 
 
 }

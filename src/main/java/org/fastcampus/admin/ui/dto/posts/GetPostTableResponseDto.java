@@ -1,5 +1,6 @@
-package org.fastcampus.admin.ui.dto.users;
+package org.fastcampus.admin.ui.dto.posts;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,32 +11,28 @@ import org.fastcampus.common.TimeCalculator;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetUserTableResponseDto {
+public class GetPostTableResponseDto {
     @Getter
-    private Long id;
-
+    private Long postId;
     @Getter
-    private String email;
-
+    private Long userId;
     @Getter
-    private String name;
-
-    @Getter
-    private String role;
+    private String userName;
+    private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private LocalDateTime lastLoginAt;
 
-    // 시간은 String으로 포매팅 후 전달.
+    public String getContent() {
+        if (content.length() > 10) {
+            return content.substring(0, 10) + "...";
+        }
+        return content;
+    }
+
     public String getCreatedAt() {
         return TimeCalculator.getFormattedDate(createdAt);
     }
-
     public String getUpdatedAt() {
         return TimeCalculator.getFormattedDate(updatedAt);
-    }
-
-    public String getLastLoginAt() {
-        return TimeCalculator.getFormattedDate(lastLoginAt);
     }
 }
