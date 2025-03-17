@@ -2,7 +2,11 @@ package org.fastcampus.admin.ui;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.fastcampus.admin.ui.dto.GetTableListResponse;
 import org.fastcampus.admin.ui.dto.users.GetDailyRegisterUserResponseDto;
+import org.fastcampus.admin.ui.dto.users.GetUserTableRequestDto;
+import org.fastcampus.admin.ui.dto.users.GetUserTableResponseDto;
+import org.fastcampus.admin.ui.query.AdminTableQueryRepository;
 import org.fastcampus.admin.ui.query.UserStateQueryRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
     private final UserStateQueryRepository userStateQueryRepository;
+    private final AdminTableQueryRepository adminTableQueryRepository;
 
     //메인 페이지
     @GetMapping("/index")
@@ -33,4 +38,21 @@ public class AdminController {
         modelAndView.addObject("result", result);
         return modelAndView;
     }
+
+    @GetMapping("/users")
+    public ModelAndView users(GetUserTableRequestDto dto) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("users");
+
+        GetTableListResponse<GetUserTableResponseDto> result = adminTableQueryRepository.getUserTableData(dto);
+        modelAndView.addObject("requestDto", dto);
+        modelAndView.addObject("userList", result.getTableData());
+        modelAndView.addObject("totalCount", result.getTotalCount());
+
+        return modelAndView;
+    }
+
+
+
 }

@@ -1,12 +1,18 @@
 package org.fastcampus.common.domain;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Pageable {
     private int pageIndex;
     private int pageSize;
 
     public Pageable() {
         this.pageIndex = 1;
-        this.pageSize = 10;
+        this.pageSize = 5;
     }
 
     public Pageable(int pageIndex, int pageSize) {
