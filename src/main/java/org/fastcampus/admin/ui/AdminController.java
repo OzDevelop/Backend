@@ -30,7 +30,7 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
 
-        List<GetDailyRegisterUserResponseDto> result = userStateQueryRepository.getDailyRegisterUserState(7);
+        List<GetDailyRegisterUserResponseDto> result = userStateQueryRepository.getDailyRegisterUserState(500);
         modelAndView.addObject("result", result);
         return modelAndView;
     }
