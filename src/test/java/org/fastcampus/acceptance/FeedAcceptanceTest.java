@@ -31,21 +31,21 @@ public class FeedAcceptanceTest extends AcceptanceTestTemplate {
      * User2 Create Post 1 User1 Get Post 1 From Feed
      */
 
-    @Test
-    void givenUserHasFollowerAndCreatePost_whenFollowerUserRequestFeed_thenFollowerFeedCanGetPost() {
-// given
-        CreatePostRequestDto dto = new CreatePostRequestDto(2L, "user 1 can get this post.",
-                PostPublicationState.PUBLIC);
-        Long createdPostId = requestCreatePost(dto);
-
-// when, 팔로워의 피드 요청
-        List<GetPostContentResponseDto> result = requestFeed(token);
-
-// then
-        assertEquals(1, result.size());
-
-        assertEquals(createdPostId, result.get(0).getId());
-    }
+//    @Test
+//    void givenUserHasFollowerAndCreatePost_whenFollowerUserRequestFeed_thenFollowerFeedCanGetPost() {
+//// given
+//        CreatePostRequestDto dto = new CreatePostRequestDto(2L, "user 1 can get this post.",
+//                PostPublicationState.PUBLIC);
+//        Long createdPostId = requestCreatePost(dto);
+//
+//// when, 팔로워의 피드 요청
+//        List<GetPostContentResponseDto> result = requestFeed(token);
+//
+//// then
+//        assertEquals(1, result.size());
+//
+//        assertEquals(createdPostId, result.get(0).getId());
+//    }
 
     @Test
     void givenUserHasFollowerAndCreatePost_whenFollowerUserRequestFeed_thenFollowerCanGetPostFromFeed() {

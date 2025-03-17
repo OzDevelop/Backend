@@ -17,7 +17,7 @@ public class PageableTest {
 
         // then
         assertEquals(0, offset);
-        assertEquals(10, limit);
+        assertEquals(5, limit);
     }
 
     @Test

@@ -12,7 +12,7 @@ public class Pageable {
 
     public Pageable() {
         this.pageIndex = 1;
-        this.pageSize = 5;
+        this.pageSize = 10;
     }
 
     public Pageable(int pageIndex, int pageSize) {
