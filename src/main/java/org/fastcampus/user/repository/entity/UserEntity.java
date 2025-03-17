@@ -1,10 +1,12 @@
 package org.fastcampus.user.repository.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import org.fastcampus.common.repository.entity.TimeBaseEntity;
 import org.fastcampus.user.domain.User;
 import org.fastcampus.user.domain.UserInfo;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "community_user")
@@ -44,6 +47,12 @@ public class UserEntity extends TimeBaseEntity {
         // 이러면 자바 앱 내부적으로 메모리 부족의 문제가 발생할 수 있음.
     // @OneToMany
 //    private List<PostEntity> posts;
+
+
+    // Date 형태로 데이터를 추출하고, 인덱스의 100프로 사용으로 db 성능을 올리기 위해 사용.
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDate regDate;
 
     public UserEntity(User user) {
         this.id = user.getId();
