@@ -1,6 +1,7 @@
 package org.fastcampus.admin.ui.dto;
 
-import java.time.LocalDate;
+
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetDailyRegisterUserResponseDto {
-    private LocalDate date;
-    private Long count;
+public class GetTableListResponse<T> {
+
+    private int totalCount;
+    private List<T> tableData;
 }

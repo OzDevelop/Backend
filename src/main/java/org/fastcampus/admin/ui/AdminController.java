@@ -1,9 +1,8 @@
 package org.fastcampus.admin.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.fastcampus.admin.ui.dto.GetDailyRegisterUserResponseDto;
+import org.fastcampus.admin.ui.dto.users.GetDailyRegisterUserResponseDto;
 import org.fastcampus.admin.ui.query.UserStateQueryRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
