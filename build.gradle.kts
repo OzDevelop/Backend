@@ -41,6 +41,9 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-impl:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-gson:0.12.6")
 
+    // fcm
+    implementation("com.google.firebase:firebase-admin:9.3.0")
+
 
     // lombok
     implementation ("org.projectlombok:lombok")
